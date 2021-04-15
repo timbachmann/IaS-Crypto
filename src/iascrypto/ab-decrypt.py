@@ -6,7 +6,7 @@ from Crypto.Util.Padding import pad, unpad  # requires 'pycrypto' package
 
 block_size = 16            # <comment here>
 key = b'!pre-shared-key!'  # <comment here>
-
+iv = b'4758403254850293'
 
 def write_decrypted(bytes, path):
     file = open(path, "wb")
@@ -22,7 +22,7 @@ def read_encrypted(path):
 
 
 def main(args):
-    cipher = AES.new(key, AES.MODE_ECB)
+    cipher = AES.new(key, AES.MODE_CBC, iv)
     padded_encrypted_text = read_encrypted(args.input)
     padded_plain_text = cipher.decrypt(padded_encrypted_text)
     plain_text = unpad(padded_plain_text, block_size)
