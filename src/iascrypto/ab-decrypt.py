@@ -1,11 +1,11 @@
 #!/bin/python3
 
 import argparse
-from Crypto.Cipher import AES               # requires 'pycrypto' package
-from Crypto.Util.Padding import pad, unpad  # requires 'pycrypto' package
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import unpad
 
-block_size = 16            # <comment here>
-key = b'!pre-shared-key!'  # <comment here>
+block_size = 16
+key = b'!pre-shared-key!'
 iv = b'4758403254850293'
 
 def write_decrypted(bytes, path):

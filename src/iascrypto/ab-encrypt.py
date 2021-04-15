@@ -1,21 +1,21 @@
 #!/bin/python3
 
 """
-This Version of the Script is more secure since the old MODE_EBC enrypts every block independantly what is
-very insecure since one can easily find weaknesses like similarities in blocks to crack the encr.
+This Version of the Script is more secure since the old MODE_ECB encrypts every block independently what is
+very insecure since one can easily find weaknesses like similarities in blocks to crack the encryption.
 
 This Version with Mode_CBC XOR a block with the encrypted previous one before encryption. This is more secure
-since simple exploit of similarities and blocksize are not possible anymore. But Thjere is an Initialisation vector neccessary which must
-be the same size as a block. This Vecor is XOR'd with the first block to encrypt.
+since simple exploit of similarities and blocksize are not possible anymore. But There is an Initialisation vector neccessary which must
+be the same size as a block. This Vector is XOR'd with the first block to encrypt.
 """
 
 import argparse
 from Crypto.Cipher import AES               # requires 'pycrypto' package
-from Crypto.Util.Padding import pad, unpad  # requires 'pycrypto' package
+from Crypto.Util.Padding import pad         # requires 'pycrypto' package
 
 block_size = 16            # Since aes is a block cipher, we need to define a block size
 key = b'!pre-shared-key!'  # This is the preshared AES key
-iv = b'4758403254850293'
+iv = b'4758403254850293'   # Initialisation Vector
 
 
 def read_plain(path):
