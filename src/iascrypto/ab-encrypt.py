@@ -4,8 +4,8 @@ import argparse
 from Crypto.Cipher import AES               # requires 'pycrypto' package
 from Crypto.Util.Padding import pad, unpad  # requires 'pycrypto' package
 
-block_size = 16            # <comment here>
-key = b'!pre-shared-key!'  # <comment here>
+block_size = 16            # Since aes is a block cipher, we need to define a block size
+key = b'!pre-shared-key!'  # This is the preshared AES key 
 
 
 def read_plain(path):
@@ -22,14 +22,14 @@ def write_encrypted(bytes, path):
 
 
 def main(args):
-    # <comment here>
+    # Here a new aes encryptor is created
     cipher = AES.new(key, AES.MODE_ECB)
 
-    # <comment here>
+    # The Plain Text(message) is read from the inputfile and padded (filled up till right block size)
     plain_text = read_plain(args.input)
     padded_plain_text = pad(plain_text, block_size)
 
-    # <comment here>
+    # The message is ecrypted and saved to the outputfile
     cipher_text = cipher.encrypt(padded_plain_text)
     write_encrypted(cipher_text, args.output)
 
